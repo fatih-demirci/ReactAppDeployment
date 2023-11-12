@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+  gitlab:
+    container_name: c_gitlab
+    image: gitlab/gitlab-ce:latest
+
+  gitlab-runner:
+    container_name: c_gitlab_runner
+    image: gitlab/gitlab-runner:latest

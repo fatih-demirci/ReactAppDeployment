@@ -1,0 +1,8 @@
+version: "3.4"
+
+services:
+  react.web.ui:
+    container_name: c_react_webui
+    image: fatihdemirci/reactdeployment:latest
+    build:
+      dockerfile: "ReactApp/Dockerfile"

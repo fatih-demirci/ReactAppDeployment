@@ -1,0 +1,8 @@
+version: "3.4"
+
+services:
+  react.web.ui:
+    environment:
+      - "NODE_ENV=production"
+    ports:
+      - "80:80"

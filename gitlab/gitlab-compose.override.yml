@@ -1,0 +1,40 @@
+version: "3.4"
+
+services:
+  gitlab:
+    restart: unless-stopped
+    hostname: "192.168.1.42"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://192.168.1.42'
+    ports:
+      - "443:443"
+      - "80:80"
+      - "22:22"
+    # volumes:
+    #   - /root/gitlab/config:/etc/gitlab
+    #   - /root/gitlab/logs:/var/log/gitlab
+    #   - /root/gitlab/data:/var/opt/gitlab
+    volumes:
+      - gitlabconfig:/etc/gitlab
+      - gitlablogs:/var/log/gitlab
+      - gitlabdata:/var/opt/gitlab
+    networks:
+      - gitlab-network
+
+  gitlab-runner:
+    restart: always
+    volumes:
+      - /root/gitlab-runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gitlab-network
+
+networks:
+  gitlab-network:
+    name: gitlab-network
+
+volumes:
+  gitlabconfig:
+  gitlablogs:
+  gitlabdata:

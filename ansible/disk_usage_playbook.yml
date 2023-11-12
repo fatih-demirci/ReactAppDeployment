@@ -1,0 +1,9 @@
+- hosts: localhost
+  tasks:
+    - name: Set up cron job to run disk usage script every six hours
+      cron:
+        name: Check disk usage
+        user: "root"
+        hour: "*/6"
+        job: "/bin/sh /home/kali/Desktop/ansible/disk_usage.sh >> /home/kali/Desktop/ansible/disk_usage.log"
+        cron_file: disk_usage
